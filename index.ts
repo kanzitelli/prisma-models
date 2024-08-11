@@ -5,35 +5,33 @@
 /**
  * Type `GetPrismaModels` returns Models with relations of your Prisma
  *
- * Example: `export type PrismaModels = GetPrismaModels<Prisma.ModelName, Prisma.TypeMap>`
+ * Example: `export type Models = GetPrismaModels<Prisma.ModelName, Prisma.TypeMap>`
  */
 export type GetPrismaModels<
   ModelName extends string,
-  TypeMap extends { model: Record<ModelName, { payload: TypeMapPayload }> },
+  TypeMap extends {model: Record<ModelName, {payload: TypeMapPayload}>},
 > = {
-  [M in ModelName]: TransformPayload<TypeMap["model"][M]["payload"]>;
+  [M in ModelName]: TransformPayload<TypeMap['model'][M]['payload']>;
 };
 
 /**
  * Type `GetPrismaModelsClean` returns Models without relations (only fields) of your Prisma
  *
- * Example: `export type PrismaModels = GetPrismaModelsClean<Prisma.ModelName, Prisma.TypeMap>`
+ * Example: `export type ModelsClean = GetPrismaModelsClean<Prisma.ModelName, Prisma.TypeMap>`
  */
 export type GetPrismaModelsClean<
   ModelName extends string,
-  TypeMap extends { model: Record<ModelName, { payload: TypeMapPayload }> },
+  TypeMap extends {model: Record<ModelName, {payload: TypeMapPayload}>},
 > = {
-  [M in ModelName]: ExtractScalars<TypeMap["model"][M]["payload"]>;
+  [M in ModelName]: ExtractScalars<TypeMap['model'][M]['payload']>;
 };
 
 /**
  * Type `GetPrismaEnums` returns Enums with format `type UserStatus = 'ACTIVE' | 'IN_REVIEW' | 'REJECTED'` of your $Enums (from Prisma)
  *
- * Example: `export type PrismaEnums = GetPrismaEnums<typeof $Enums>`
+ * Example: `export type Enums = GetPrismaEnums<typeof $Enums>`
  */
-export type GetPrismaEnums<
-  $Enums extends Record<string, Record<string, string>>,
-> = {
+export type GetPrismaEnums<$Enums extends Record<string, Record<string, string>>> = {
   [K in keyof $Enums]: $Enums[K][keyof $Enums[K]];
 };
 
@@ -44,10 +42,10 @@ export type GetPrismaEnums<
 // helpers
 type ExcludeNull<T> = Exclude<T, null>;
 
-type TypeMapPayload<T = any> = { objects: T; scalars: T };
+type TypeMapPayload<T = any> = {objects: T; scalars: T};
 type TypeMapObject = Record<string, RealPayload>;
-type ExtractScalars<T extends TypeMapPayload> = T["scalars"];
-type ExtractObjects<T extends TypeMapPayload> = T["objects"];
+type ExtractScalars<T extends TypeMapPayload> = T['scalars'];
+type ExtractObjects<T extends TypeMapPayload> = T['objects'];
 
 type OnePayload = TypeMapPayload | null;
 type ManyPayloads = Array<TypeMapPayload>;
@@ -66,13 +64,9 @@ type TransformPayload<T extends TypeMapPayload> = ExtractScalars<T> &
 type TransformObjects<O extends TypeMapObject> = {
   [K in keyof O]: O[K] extends RealPayload
     ? O[K] extends ManyPayloads
-      ? Array<
-          ExtractScalars<O[K][number]> &
-            TransformObjects<ExtractObjects<O[K][number]>>
-        >
+      ? Array<ExtractScalars<O[K][number]> & TransformObjects<ExtractObjects<O[K][number]>>>
       : O[K] extends OnePayload
-        ? ExtractScalars<ExcludeNull<O[K]>> &
-            TransformObjects<ExtractObjects<ExcludeNull<O[K]>>>
+        ? ExtractScalars<ExcludeNull<O[K]>> & TransformObjects<ExtractObjects<ExcludeNull<O[K]>>>
         : unknown
     : O[K];
 };
