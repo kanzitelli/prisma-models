@@ -1,0 +1,33 @@
+{
+  "name": "prisma-models",
+  "version": "0.0.1",
+  "description": "Prisma Models as a Mapped type → Models['User'] and Enums['UserStatus']",
+  "author": "Batyr <dev@batyr.io>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc && echo Build completed!",
+    "postbuild": "prettier --write ./dist",
+    "clean": "rm -rf ./node_modules ./package-lock.json && yarn",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format:check": "prettier --check ./src",
+    "format:write": "prettier --write ./src",
+    "release:github": "npm run build && dotenv release-it",
+    "release:npm:public": "npm run build && npm publish --access public",
+    "release:npm:private": "npm run build && npm publish",
+    "publish:npm": "npm run build && npm publish",
+    "publish:npm:next": "npm run build && npm publish --tag next"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "license": "MIT"
+}
