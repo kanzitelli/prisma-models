@@ -22,7 +22,9 @@ import {Prisma} from '@prisma/client';
 import {GetPrismaModels} from 'prisma-models';
 
 export type Models = GetPrismaModels<Prisma.ModelName, Prisma.TypeMap>;
+```
 
+```tsx
 // [ src/types/enums.ts ]
 import {$Enums} from '@prisma/client';
 import {GetPrismaEnums} from 'prisma-models';
@@ -43,7 +45,9 @@ export const loader = async () => {
   }
   const userData = data.user as Models['User'];
 };
+```
 
+```tsx
 // [ src/components/user-status.tsx ]
 import type {Enums} from '~/src/types/enums';
 
