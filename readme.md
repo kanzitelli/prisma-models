@@ -14,7 +14,7 @@ npm i -D prisma-models
 # yarn add -D prisma-models
 ```
 
-2. Create Models and Enums in you
+2. Generate `Models` and `Enums`
 
 ```tsx
 // [ src/types/models.ts ]
