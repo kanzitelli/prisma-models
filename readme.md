@@ -1,6 +1,6 @@
 # ⟁ [Prisma](https://github.com/prisma/prisma) Models
 
-[Prisma Models](https://github.com/kanzitelli/prisma-models) generates a Mapped type that includes all the generated types from your Prisma Client. This approach enables you to access Prisma models and enums from a single source. Instead of importing each type individually from the Prisma Client, you can use mapped types such as `Models["User"]` for models and `Enums["UserStatus"]` for enums.
+[Prisma Models](https://github.com/kanzitelli/prisma-models) returns a Mapped type that includes all the generated types from your Prisma Client. This approach enables you to access Prisma models and enums from a single source. Instead of importing each type individually from the Prisma Client, you can use mapped types such as `Models["User"]` for models and `Enums["UserStatus"]` for enums.
 
 ## Usage
 
@@ -19,17 +19,17 @@ npm i -D prisma-models
 ```tsx
 // [ src/types/models.ts ]
 import {Prisma} from '@prisma/client';
-import {GetPrismaModels} from 'prisma-models';
+import {PrismaModels} from 'prisma-models';
 
-export type Models = GetPrismaModels<Prisma.ModelName, Prisma.TypeMap>;
+export type Models = PrismaModels<Prisma.ModelName, Prisma.TypeMap>;
 ```
 
 ```tsx
 // [ src/types/enums.ts ]
 import {$Enums} from '@prisma/client';
-import {GetPrismaEnums} from 'prisma-models';
+import {PrismaEnums} from 'prisma-models';
 
-export type Enums = GetPrismaEnums<typeof $Enums>;
+export type Enums = PrismaEnums<typeof $Enums>;
 ```
 
 3. Use `Models` and `Enums` in your code

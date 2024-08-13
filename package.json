@@ -1,6 +1,6 @@
 {
   "name": "prisma-models",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Prisma Models as a Mapped type → Models['User'] and Enums['UserStatus']",
   "author": "Batyr <dev@batyr.io>",
   "main": "dist/index.js",
@@ -21,8 +21,6 @@
     "release:npm:private": "npm run build && npm publish",
     "publish:npm": "npm run build && npm publish",
     "publish:npm:next": "npm run build && npm publish --tag next"
-  },
-  "dependencies": {
   },
   "devDependencies": {
     "@types/node": "^20.12.11",

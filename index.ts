@@ -3,11 +3,11 @@
 //        however, approach below is going recursively and changing all types till the very bottom.
 
 /**
- * Type `GetPrismaModels` returns Models with relations of your Prisma
+ * Type `PrismaModels` returns Models with relations of your Prisma
  *
- * Example: `export type Models = GetPrismaModels<Prisma.ModelName, Prisma.TypeMap>`
+ * Example: `export type Models = PrismaModels<Prisma.ModelName, Prisma.TypeMap>`
  */
-export type GetPrismaModels<
+export type PrismaModels<
   ModelName extends string,
   TypeMap extends {model: Record<ModelName, {payload: TypeMapPayload}>},
 > = {
@@ -15,11 +15,11 @@ export type GetPrismaModels<
 };
 
 /**
- * Type `GetPrismaModelsClean` returns Models without relations (only fields) of your Prisma
+ * Type `PrismaModelsClean` returns Models without relations (only fields) of your Prisma
  *
- * Example: `export type ModelsClean = GetPrismaModelsClean<Prisma.ModelName, Prisma.TypeMap>`
+ * Example: `export type ModelsClean = PrismaModelsClean<Prisma.ModelName, Prisma.TypeMap>`
  */
-export type GetPrismaModelsClean<
+export type PrismaModelsClean<
   ModelName extends string,
   TypeMap extends {model: Record<ModelName, {payload: TypeMapPayload}>},
 > = {
@@ -27,11 +27,11 @@ export type GetPrismaModelsClean<
 };
 
 /**
- * Type `GetPrismaEnums` returns Enums with format `type UserStatus = 'ACTIVE' | 'IN_REVIEW' | 'REJECTED'` of your $Enums (from Prisma)
+ * Type `PrismaEnums` returns Enums with format `type UserStatus = 'ACTIVE' | 'IN_REVIEW' | 'REJECTED'` of your $Enums (from Prisma)
  *
- * Example: `export type Enums = GetPrismaEnums<typeof $Enums>`
+ * Example: `export type Enums = PrismaEnums<typeof $Enums>`
  */
-export type GetPrismaEnums<$Enums extends Record<string, Record<string, string>>> = {
+export type PrismaEnums<$Enums extends Record<string, Record<string, string>>> = {
   [K in keyof $Enums]: $Enums[K][keyof $Enums[K]];
 };
 
